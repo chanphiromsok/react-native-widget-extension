@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "react-native-widget-extension-example",
+    "name": "SampleWidgetExtension",
     "slug": "react-native-widget-extension-example",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -14,14 +14,19 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "expo.modules.widgetextension.example"
+      "bundleIdentifier": "expo.modules.widgetextension.nham24",
+      "entitlements": {
+        "com.apple.security.application-groups": [
+          "group.com.example.widgetextension"
+        ]
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "expo.modules.widgetextension.example"
+      "package": "expo.modules.widgetextension.nham24"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -29,7 +34,11 @@
     "plugins": [
       [
         "../app.plugin.js",
-        { "frequentUpdates": true, "widgetsFolder": "SampleWidgetExtension" }
+        {
+          "frequentUpdates": true,
+          "widgetsFolder": "SampleWidgetExtension",
+          "appGroupIdentifier": "group.com.example.widgetextension"
+        }
       ]
     ],
     "extra": {

@@ -1,8 +1,8 @@
 import { ConfigPlugin, IOSConfig, withPlugins } from "@expo/config-plugins";
 import { withConfig } from "./withConfig";
 import { withPodfile } from "./withPodfile";
-
 import { withXcode } from "./withXcode";
+
 
 const withLiveActivities: ConfigPlugin<{
   frequentUpdates?: boolean;
@@ -33,6 +33,7 @@ const withLiveActivities: ConfigPlugin<{
       NSSupportsLiveActivitiesFrequentUpdates: frequentUpdates,
     },
   };
+
 
   config = withPlugins(config, [
     [

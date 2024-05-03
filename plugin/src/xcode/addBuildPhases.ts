@@ -29,8 +29,6 @@ export function addBuildPhases(
     swiftFiles,
     intentFiles,
     assetDirectories,
-    entitlementFiles,
-    plistFiles,
   } = widgetFiles;
 
   // Sources build phase

@@ -1,8 +1,7 @@
 import { XcodeProject } from "@expo/config-plugins";
-
 import { WidgetFiles } from "../lib/getWidgetFiles";
 
-export function addPbxGroup(
+export async function addPbxGroup(
   xcodeProject: XcodeProject,
   {
     targetName,
@@ -20,7 +19,7 @@ export function addPbxGroup(
     entitlementFiles,
     plistFiles,
   } = widgetFiles;
-
+  // const entitlementFiles = `${targetName}.entitlements`;
   // Add PBX group
   const { uuid: pbxGroupUuid } = xcodeProject.addPbxGroup(
     [

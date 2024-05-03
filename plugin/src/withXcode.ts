@@ -9,6 +9,7 @@ import { addTargetDependency } from "./xcode/addTargetDependency";
 import { addPbxGroup } from "./xcode/addPbxGroup";
 import { addBuildPhases } from "./xcode/addBuildPhases";
 import { getWidgetFiles } from "./lib/getWidgetFiles";
+import { addWidgetEntitlement } from "./xcode/addWidgetEntitlement";
 
 export const withXcode: ConfigPlugin<{
   targetName: string;
@@ -45,6 +46,7 @@ export const withXcode: ConfigPlugin<{
       moduleFileName,
       attributesFileName
     );
+    console.log(widgetFiles);
 
     const xCConfigurationList = addXCConfigurationList(xcodeProject, {
       targetName,
@@ -74,13 +76,23 @@ export const withXcode: ConfigPlugin<{
       targetUuid,
       groupName,
       productFile,
-      widgetFiles,
+      widgetFiles, //NO entitlement and plist files
     });
 
     addPbxGroup(xcodeProject, {
       targetName,
       widgetFiles,
     });
+    if (!!widgetFiles.entitlementFiles?.[0]) {
+      addWidgetEntitlement(xcodeProject, {
+        targetName,
+        entitlementsFilename: widgetFiles.entitlementFiles[0],
+      });
+    } else {
+      console.log(
+        "No entitlement file found in the widget folder. Skipping adding entitlements to the target."
+      );
+    }
 
     return config;
   });
